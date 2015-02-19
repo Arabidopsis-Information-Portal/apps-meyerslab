@@ -28,14 +28,4 @@ ENV PATH $PATH:/opt/meyerslab
 RUN wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/miRferno.py" -O miRferno.py; \
     wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/sparta/sPARTA.py" -O "sPARTA.py"
 
-RUN mkdir -p /opt/meyerslab/data
-WORKDIR /opt/meyerslab/data
-
-RUN wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_miRferno.tar.gz" -O sampleData_miRferno.tar.gz; \
-    tar -zxvf sampleData_miRferno.tar.gz; \
-    rm sampleData_miRferno.tar.gz; \
-    wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_sPARTA.tar.gz" -O "sampleData_sPARTA.tar.gz"; \
-    tar -zxvf sampleData_sPARTA.tar.gz; \
-    rm sampleData_sPARTA.tar.gz
-
 WORKDIR /home

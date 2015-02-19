@@ -1,0 +1,214 @@
+{
+    "name": "mirferno-reference-genome",
+    "parallelism": "SERIAL",
+    "version": "1.07",
+    "helpURI": "http://www.ncbi.nlm.nih.gov/books/NBK1763/",
+    "label": "miRferno - Target prediction module of sPARTA using reference genome",
+    "shortDescription": "miRferno is the miRNA-target prediction module of small RNA-PARE Target Analyzer (sPARTA). This version predicts targets given a genome in FASTA and annotation in GFF3.",
+    "longDescription": "",
+    "defaultMemory": "4G",
+    "defaultProcessors": 1,
+    "defaultQueue": "normal",
+    "deploymentPath": "vaughn/apps/docker-meyerslab",
+    "deploymentSystem": "araport-storage-00",
+    "executionSystem": "araport-compute-00",
+    "executionType": "CLI",
+    "templatePath": "mirferno.blastx",
+    "testPath": "mirferno-test.blastx",
+    "checkpointable": false,
+    "modules": [],
+    "tags": [
+        "mirna",
+        "target prediction"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/agave/apps/Application"
+    ],
+    "inputs": [
+        {
+            "id": "miRNAFile",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "miRNA sequence file",
+                "description": "Contains one or more miRNA sequences in FASTA format",
+                "argument": "-miRNAFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-fasta"
+                ],
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "genomeFile",
+            "value": {
+                "default": "agave://araport-storage-00/public_files/genome.fa",
+                "type": "string",
+                "validator": "",
+                "visible": false,
+                "required": true
+            },
+            "details": {
+                "label": "Genome sequence file",
+                "description": "Genome sequence in FASTA format used to extract features (genic or intergenic regions) using the GFF3 file",
+                "argument": "-genomeFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-fasta"
+                ],
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "gffFile",
+            "value": {
+                "default": "agave://araport-storage-00/public_files/genome.gff3",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "Genome annotation file",
+                "description": "GFF3 format file used to describe genic and other types features ",
+                "argument": "-genomeFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-fasta"
+                ],
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "genomeFeature",
+            "value": {
+                "defaultValue": "0",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "0": "Prediction is to be done in genic region"
+                    },
+                    {
+                        "1": "Prediction is to be done in intergenic region"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Target prediction context",
+                "description": "",
+                "argument": "-genomeFeature ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "tarPred",
+            "value": {
+                "defaultValue": "H",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "H": "Heuristic"
+                    },
+                    {
+                        "E": "Exhaustive"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Mode of target prediction",
+                "description": "",
+                "argument": "-tarPred ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "tarScore",
+            "value": {
+                "defaultValue": "S",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "S": "Seedless"
+                    },
+                    {
+                        "N": "Normal"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Scoring mode for target prediction",
+                "description": "",
+                "argument": "-tarScore ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "Predictions",
+            "value": {
+                "default": "All.targs.parsed.csv",
+                "validator": ""
+            },
+            "details": {
+                "label": "Predictions in CSV format",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/text/Csv"
+                ],
+                "minCardinality": "1",
+                "maxCardinality": "1",
+                "fileType": "Text-0"
+            }
+        }
+    ]
+}
