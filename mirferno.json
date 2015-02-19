@@ -2,7 +2,7 @@
     "name": "mirferno-reference-genome",
     "parallelism": "SERIAL",
     "version": "1.07",
-    "helpURI": "http://www.ncbi.nlm.nih.gov/books/NBK1763/",
+    "helpURI": "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/README.txt",
     "label": "miRferno - Target prediction module of sPARTA using reference genome",
     "shortDescription": "miRferno is the miRNA-target prediction module of small RNA-PARE Target Analyzer (sPARTA). This version predicts targets given a genome in FASTA and annotation in GFF3.",
     "longDescription": "",

@@ -1,0 +1,9 @@
+# Grab some sample data
+wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_miRferno.tar.gz" -O sampleData_miRferno.tar.gz; \
+    tar -zxvf sampleData_miRferno.tar.gz; \
+    rm sampleData_miRferno.tar.gz;
+
+# Fire off script template
+genomeFile="-genomeFile genomeFile.fa" gffFile="-gffFile AT_GFF3file.gff3" miRNAFile="-miRNAFile miRNAFile.fa" genomeFeature="-genomeFeature 0" bash mirferno.bashx
+
+exit 0
