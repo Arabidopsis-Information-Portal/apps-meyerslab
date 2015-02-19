@@ -20,16 +20,14 @@ RUN wget -q -O bowtie2.zip http://sourceforge.net/projects/bowtie-bio/files/bowt
 
 ENV PATH $PATH:/opt/bowtie2
 
-RUN mkdir -p /opt/meyerslab
-WORKDIR /opt/meyerslab
-ENV PATH $PATH:/opt/meyerslab
+RUN useradd -ms /bin/bash araport
+ENV HOME /home/araport
+USER araport
+WORK $HOME
 
 # Grab miRferno source and sample data
 RUN wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/miRferno.py" -O miRferno.py; \
     wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/sparta/sPARTA.py" -O "sPARTA.py"
-
-RUN mkdir -p /opt/meyerslab/data
-WORKDIR /opt/meyerslab/data
 
 RUN wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_miRferno.tar.gz" -O sampleData_miRferno.tar.gz; \
     tar -zxvf sampleData_miRferno.tar.gz; \
@@ -38,4 +36,3 @@ RUN wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_miR
     tar -zxvf sampleData_sPARTA.tar.gz; \
     rm sampleData_sPARTA.tar.gz
 
-WORKDIR /home

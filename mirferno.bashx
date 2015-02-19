@@ -1,0 +1,17 @@
+# Example command invocation
+# python3 miRferno.py -genomeFile genomeFile.fa -gffFile AT_GFF3file.gff3 \
+#        -miRNAFile miRNAFile.fa -genomeFeature 0 -accel 4
+
+DOCKER_IMAGE="araport/meyerslab"
+DOCKER_COMMAND="docker run -i -t -v `pwd`:/scratch:rw -w /scratch --net=none -m=\"1g\""
+
+ARGS="${genomeFile} ${gffFile} ${miRNAFile} ${genomeFeature} -accel 4"
+
+${DOCKER_COMMAND} ${DOCKER_IMAGE} python3 /opt/meyerslab/miRferno.py ${ARGS}
+
+# Clean up
+mv predicted/*.tsv .
+for XX in genomic_seq* *.fa *.gff3 coords frag.mem genome index predicted
+do
+    rm -rf "${XX}"
+done
