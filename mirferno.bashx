@@ -3,7 +3,6 @@
 #        -miRNAFile miRNAFile.fa -genomeFeature 0 -accel 4
 
 ARAPORT_DOCKER="docker run -i -v `pwd`:/scratch:rw -w /scratch --net=none -m=2g "
-umask a+rwx
 
 DOCKER_IMAGE="araport/meyerslab:latest"
 

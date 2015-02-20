@@ -31,3 +31,4 @@ RUN wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/ww
 
 RUN useradd vaughn
 WORKDIR /home/vaughn
+USER vaughn
