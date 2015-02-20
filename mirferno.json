@@ -3,7 +3,7 @@
     "parallelism": "SERIAL",
     "version": "1.07",
     "helpURI": "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/README.txt",
-    "label": "miRferno - Target prediction module of sPARTA using reference genome",
+    "label": "miRferno - Target prediction using reference genome",
     "shortDescription": "miRferno is the miRNA-target prediction module of small RNA-PARE Target Analyzer (sPARTA). This version predicts targets given a genome in FASTA and annotation in GFF3.",
     "longDescription": "",
     "defaultMemory": "4G",
@@ -13,8 +13,8 @@
     "deploymentSystem": "araport-storage-00",
     "executionSystem": "araport-compute-00",
     "executionType": "CLI",
-    "templatePath": "mirferno.blastx",
-    "testPath": "mirferno-test.blastx",
+    "templatePath": "mirferno.bashx",
+    "testPath": "mirferno-test.bashx",
     "checkpointable": false,
     "modules": [],
     "tags": [
@@ -44,6 +44,8 @@
                 "ontology": [
                     "http://sswapmeet.sswap.info/mime/application/X-fasta"
                 ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
                 "fileTypes": [
                     "fasta-0",
                     "text-0",
@@ -70,6 +72,8 @@
                 "ontology": [
                     "http://sswapmeet.sswap.info/mime/application/X-fasta"
                 ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
                 "fileTypes": [
                     "fasta-0",
                     "text-0",
@@ -89,13 +93,15 @@
             "details": {
                 "label": "Genome annotation file",
                 "description": "GFF3 format file used to describe genic and other types features ",
-                "argument": "-genomeFile ",
+                "argument": "-gffFile ",
                 "showArgument": true
             },
             "semantics": {
                 "ontology": [
                     "http://sswapmeet.sswap.info/mime/application/X-fasta"
                 ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
                 "fileTypes": [
                     "fasta-0",
                     "text-0",
@@ -108,7 +114,7 @@
         {
             "id": "genomeFeature",
             "value": {
-                "defaultValue": "0",
+                "default": "0",
                 "type": "enumeration",
                 "visible": true,
                 "required": true,
@@ -136,7 +142,7 @@
         {
             "id": "tarPred",
             "value": {
-                "defaultValue": "H",
+                "default": "H",
                 "type": "enumeration",
                 "visible": true,
                 "required": true,
@@ -164,7 +170,7 @@
         {
             "id": "tarScore",
             "value": {
-                "defaultValue": "S",
+                "default": "S",
                 "type": "enumeration",
                 "visible": true,
                 "required": true,
@@ -205,8 +211,8 @@
                 "ontology": [
                     "http://sswapmeet.sswap.info/mime/text/Csv"
                 ],
-                "minCardinality": "1",
-                "maxCardinality": "1",
+                "minCardinality": 1,
+                "maxCardinality": 1,
                 "fileType": "Text-0"
             }
         }

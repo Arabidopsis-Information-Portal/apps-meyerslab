@@ -28,4 +28,6 @@ ENV PATH $PATH:/opt/meyerslab
 RUN wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/miRferno.py" -O miRferno.py; \
     wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/sparta/sPARTA.py" -O "sPARTA.py"
 
-WORKDIR /home
+
+RUN useradd vaughn
+WORKDIR /home/vaughn

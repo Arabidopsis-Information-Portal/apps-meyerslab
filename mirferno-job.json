@@ -1,0 +1,34 @@
+{
+  "name":"mirferno-reference-genome test-1424371408",
+  "appId": "mirferno-reference-genome-1.07",
+  "batchQueue": "normal",
+  "executionSystem": "araport-compute-00",
+  "maxRunTime": "01:00:00",
+  "memoryPerNode": "1GB",
+  "nodeCount": 1,
+  "processorsPerNode": 1,
+  "archive": false,
+  "archiveSystem": "araport-storage-00",
+  "archivePath": "vaughn/archive/mirferno",
+  "inputs": {
+    "miRNAFile" : "vaughn/miRNAFile.fa",
+    "gffFile": "agave://araport-storage-00/public_files/genome.gff3"
+  },
+  "parameters": {
+    "genomeFeature": 0,
+    "tarPred": "H",
+    "tarScore": "S"
+  },
+  "notifications": [
+    {
+      "url":"vaughn@tacc.utexas.edu",
+      "event":"FINISHED",
+      "persistent":false
+    },
+    {
+      "url":"vaughn@tacc.utexas.edu",
+      "event":"FAILED",
+      "persistent":false
+    }
+  ]
+}
