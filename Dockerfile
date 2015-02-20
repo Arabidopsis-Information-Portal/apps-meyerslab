@@ -28,7 +28,9 @@ ENV PATH $PATH:/opt/meyerslab
 RUN wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/miRferno.py" -O miRferno.py; \
     wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/sparta/sPARTA.py" -O "sPARTA.py"
 
-RUN useradd vaughn
-WORKDIR /home/vaughn
-RUN chown -R vaughn /home/vaughn
-USER vaughn
+# User management stuff
+# Need to shove the useradd down into a base image
+#RUN useradd vaughn
+#WORKDIR /home/vaughn
+#RUN chown -R vaughn /home/vaughn
+#USER vaughn
