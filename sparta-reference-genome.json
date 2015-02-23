@@ -1,0 +1,379 @@
+{
+    "name": "sparta-reference-genome",
+    "parallelism": "SERIAL",
+    "version": "1.07",
+    "helpURI": "https://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/sparta/README.txt",
+    "label": "small RNA-PARE Target Analyzer using reference genome",
+    "shortDescription": "sPARTA uses products of high-throughput sequencing to profile genome-wide cleavage products. This version predicts targets given a genome in FASTA and annotation in GFF3.",
+    "longDescription": "",
+    "defaultMemory": "4G",
+    "defaultProcessors": 1,
+    "defaultQueue": "normal",
+    "deploymentPath": "vaughn/apps/docker-meyerslab",
+    "deploymentSystem": "araport-storage-00",
+    "executionSystem": "araport-compute-00",
+    "executionType": "CLI",
+    "templatePath": "sparta.bashx",
+    "testPath": "sparta-test.bashx",
+    "checkpointable": false,
+    "modules": [],
+    "tags": [
+        "mirna",
+        "target prediction",
+        "cleavage products"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/agave/apps/Application"
+    ],
+    "inputs": [
+        {
+            "id": "miRNAFile",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "miRNA sequence file",
+                "description": "Contains one or more miRNA sequences in FASTA format",
+                "argument": "-miRNAFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-fasta"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "genomeFile",
+            "value": {
+                "default": "agave://araport-storage-00/public_files/genome.fa",
+                "type": "string",
+                "validator": "",
+                "visible": false,
+                "required": true
+            },
+            "details": {
+                "label": "Genome sequence file",
+                "description": "Genome sequence in FASTA format used to extract features (genic or intergenic regions) using the GFF3 file",
+                "argument": "-genomeFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-fasta"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "gffFile",
+            "value": {
+                "default": "agave://araport-storage-00/public_files/genome.gff3",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "Genome annotation file",
+                "description": "GFF3 format file used to describe genic and other types features ",
+                "argument": "-gffFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-gff3"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        },{
+            "id": "PARElibs",
+            "value": {
+                "default": "agave://araport-storage-00/public_files/pare.txt",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "PARE library file(s)",
+                "description": "Must be in tag-count format",
+                "argument": "-libs ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/text/Tab-separated-values"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 20,
+                "fileTypes": [
+                    "tab-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "genomeFeature",
+            "value": {
+                "default": "0",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "0": "Prediction is to be done in genic regions"
+                    },
+                    {
+                        "1": "Prediction is to be done in intergenic regions"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Target prediction context",
+                "description": "",
+                "argument": "-genomeFeature ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "tarPred",
+            "value": {
+                "default": "H",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "H": "Heuristic"
+                    },
+                    {
+                        "E": "Exhaustive"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Mode of target prediction",
+                "description": "",
+                "argument": "-tarPred ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "tarScore",
+            "value": {
+                "default": "S",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "S": "Seedless"
+                    },
+                    {
+                        "N": "Normal"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Scoring mode for target prediction",
+                "description": "",
+                "argument": "-tarScore ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },{
+            "id": "tagLen",
+            "value": {
+                "default": 20,
+                "type": "number",
+                "visible": true
+            },
+            "details": {
+                "label": "Maximum PARE tag length",
+                "description": "Longer tags will be truncated",
+                "argument": "-tagLen ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:integer"
+                ]
+            }
+        },{
+            "id": "tag2FASTA",
+            "value": {
+                "default": true,
+                "type": "flag",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Convert tag count file for PARE libraries to FASTA files for mapping",
+                "description": "",
+                "argument": "--tag2FASTA ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:boolean"
+                ]
+            }
+        },{
+            "id": "map2DD",
+            "value": {
+                "default": true,
+                "type": "flag",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Map the PARE reads to the feature set",
+                "description": "",
+                "argument": "--map2DD ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:boolean"
+                ]
+            }
+        },{
+            "id": "validate",
+            "value": {
+                "default": false,
+                "type": "flag",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Validate potential cleave sites from miRferno",
+                "description": "",
+                "argument": "--map2DD ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:boolean"
+                ]
+            }
+        },{
+            "id": "repeats",
+            "value": {
+                "default": false,
+                "type": "flag",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Include PARE reads from repetitive regions",
+                "description": "",
+                "argument": "--repeats ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:boolean"
+                ]
+            }
+        },{
+            "id": "noiseFilter",
+            "value": {
+                "default": false,
+                "type": "flag",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Ignore noise to signal ratio at cleave site and PARE read category",
+                "description": "",
+                "argument": "--noiseFilter ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:boolean"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "Predictions",
+            "value": {
+                "default": "predictions/All.targs.parsed.csv",
+                "validator": ""
+            },
+            "details": {
+                "label": "Predictions in CSV format",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/text/Csv"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileType": "Text-0"
+            }
+        }, {
+            "id": "Validations",
+            "value": {
+                "default": "output/AllLibValidatedUniq.csv",
+                "validator": ""
+            },
+            "details": {
+                "label": "Validations in CSV format",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/text/Csv"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileType": "Text-0"
+            }
+        }
+    ]
+}

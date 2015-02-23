@@ -2,10 +2,10 @@
 # python3 miRferno.py -genomeFile genomeFile.fa -gffFile AT_GFF3file.gff3 \
 #        -miRNAFile miRNAFile.fa -genomeFeature 0 -accel 4
 
-ARAPORT_DOCKER="docker run -i -v `pwd`:/scratch -w /scratch --net=none -m=2g "
-ARAPORT_DOCKER_CLEANUP = "${ARAPORT_DOCKER} ${DOCKER_IMAGE} chmod -R a+rw ."
-
 DOCKER_IMAGE="araport/meyerslab:latest"
+
+ARAPORT_DOCKER="docker run -i -v `pwd`:/scratch -w /scratch --net=none -m=2g "
+ARAPORT_DOCKER_CLEANUP="${ARAPORT_DOCKER} ${DOCKER_IMAGE} chmod -R a+rw ."
 
 ARGS="${genomeFile} ${gffFile} ${miRNAFile} ${genomeFeature} ${tarScore} ${tarPred} -accel 4"
 
