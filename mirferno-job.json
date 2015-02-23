@@ -7,9 +7,9 @@
   "memoryPerNode": "1GB",
   "nodeCount": 1,
   "processorsPerNode": 1,
-  "archive": false,
+  "archive": true,
   "archiveSystem": "araport-storage-00",
-  "archivePath": "vaughn/archive/mirferno",
+  "archivePath": "vaughn/archive/",
   "inputs": {
     "miRNAFile" : "vaughn/miRNAFile.fa",
     "gffFile": "agave://araport-storage-00/public_files/genome.gff3"
