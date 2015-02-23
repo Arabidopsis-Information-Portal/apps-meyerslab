@@ -10,7 +10,7 @@ DOCKER_IMAGE="araport/meyerslab:latest"
 ARAPORT_DOCKER="docker run -i -v `pwd`:/scratch -w /scratch --net=none -m=2g "
 ARAPORT_DOCKER_CLEANUP="${ARAPORT_DOCKER} ${DOCKER_IMAGE} chmod -R a+rw ."
 
-ARGS="${PARElibs} ${genomeFile} ${gffFile} ${miRNAFile} ${genomeFeature} ${tarScore} ${tarPred} -accel 4 ${map2DD} ${tag2FASTA} ${tagLen} ${repeats} ${noiseFilter} ${standardCleave}"
+ARGS="${PARElibs} ${genomeFile} ${gffFile} ${miRNAFile} ${genomeFeature} ${tarScore} ${tarPred} -accel 4 ${map2DD} ${tag2FASTA} ${repeats} ${noiseFilter} ${standardCleave}"
 
 # It looks like sPARTA doesn't always create this directory so we force it
 mkdir -p output
@@ -19,6 +19,7 @@ ${ARAPORT_DOCKER} ${DOCKER_IMAGE} python3 /opt/meyerslab/sPARTA.py ${ARGS} 2>> $
 
 # This can be sourced in as a function
 ${ARAPORT_DOCKER_CLEANUP} >/dev/null 2>&1
+
 if [ ! $? ]; then
 	echo "Docker process exited with an error status." >&2
 	${AGAVE_JOB_CALLBACK_FAILURE}

@@ -60,7 +60,7 @@
                 "default": "agave://araport-storage-00/public_files/genome.fa",
                 "type": "string",
                 "validator": "",
-                "visible": false,
+                "visible": true,
                 "required": true
             },
             "details": {
@@ -112,7 +112,7 @@
         },{
             "id": "PARElibs",
             "value": {
-                "default": "agave://araport-storage-00/public_files/pare.txt",
+                "default": ["agave://araport-storage-00/public_files/pare.txt"],
                 "type": "string",
                 "validator": "",
                 "visible": true,
@@ -223,24 +223,6 @@
                 ]
             }
         },{
-            "id": "tagLen",
-            "value": {
-                "default": 20,
-                "type": "number",
-                "visible": true
-            },
-            "details": {
-                "label": "Maximum PARE tag length",
-                "description": "Longer tags will be truncated",
-                "argument": "-tagLen ",
-                "showArgument": true
-            },
-            "semantics": {
-                "ontology": [
-                    "xs:integer"
-                ]
-            }
-        },{
             "id": "tag2FASTA",
             "value": {
                 "default": true,
@@ -249,7 +231,7 @@
                 "required": false
             },
             "details": {
-                "label": "Convert tag count file for PARE libraries to FASTA files for mapping",
+                "label": "Convert tag count file for PARE libraries to FASTA",
                 "description": "",
                 "argument": "--tag2FASTA ",
                 "showArgument": true
@@ -325,9 +307,28 @@
                 "required": false
             },
             "details": {
-                "label": "Ignore noise to signal ratio at cleave site and PARE read category",
+                "label": "Ignore noise to signal ratio at cleave site",
                 "description": "",
                 "argument": "--noiseFilter ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:boolean"
+                ]
+            }
+        },{
+            "id": "standardCleave",
+            "value": {
+                "default": false,
+                "type": "flag",
+                "visible": true,
+                "required": false
+            },
+            "details": {
+                "label": "Use standard cleave locations",
+                "description": "Standard: 10th, 11th and 12th positions",
+                "argument": "--standardCleave ",
                 "showArgument": true
             },
             "semantics": {
