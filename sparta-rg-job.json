@@ -1,5 +1,5 @@
 {
-  "name":"sparta-reference-genome test-1424729422",
+  "name":"sparta-reference-genome",
   "appId": "sparta-reference-genome-1.07",
   "batchQueue": "normal",
   "executionSystem": "araport-compute-00",
@@ -7,11 +7,11 @@
   "memoryPerNode": "1GB",
   "nodeCount": 1,
   "processorsPerNode": 1,
-  "archive": false,
+  "archive": true,
   "archiveSystem": "araport-storage-00",
   "archivePath": "vaughn/archive/sparta",
   "inputs": {
-    "miRNAFile": "vaughn/miRNAFile.fa",
+    "miRNAFile": "agave://araport-storage-00/public_files/mirna.fa",
     "PARElibs": [
       "agave://araport-storage-00/public_files/pare.txt"
     ],

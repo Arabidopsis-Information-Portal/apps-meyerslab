@@ -10,7 +10,6 @@ RUN apt-get install -qq -y r-base-core python3 python3-dev python3-numpy python3
 RUN wget -q -O get-pip.py https://raw.github.com/pypa/pip/master/contrib/get-pip.py && python3 get-pip.py
 # PyFasta not available as deb, Rpy not available as deb
 RUN pip install pyfasta rpy2
-# Rpy not available as deb. May need to build from source
 
 # Bowtie2 lifted from Enis Afghan's Dockerfile
 RUN wget -q -O bowtie2.zip http://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.2.4/bowtie2-2.2.4-linux-x86_64.zip/download; \
@@ -27,12 +26,5 @@ ENV PATH $PATH:/opt/meyerslab
 # Grab miRferno source and sample data
 RUN wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/miRferno.py" -O miRferno.py; \
     wget -q "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/sparta/sPARTA.py" -O "sPARTA.py"
-
-# User management stuff
-# Need to shove the useradd down into a base image
-#RUN useradd vaughn
-#WORKDIR /home/vaughn
-#RUN chown -R vaughn /home/vaughn
-#USER vaughn
 
 WORKDIR /home
