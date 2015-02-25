@@ -4,6 +4,9 @@ wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_sPARTA.
     rm sampleData_sPARTA.tar.gz
 
 # Fire off script template
-genomeFile="-genomeFile genomeFile.fa" gffFile="-gffFile AT_GFF3file.gff3" miRNAFile="-miRNAFile miRNAFile.fa" genomeFeature="-genomeFeature 0" tag2FASTA="--tag2FASTA" PARElibs="-libs LibA_PARE.txt" AGAVE_JOB_NAME="test" bash sparta.bashx
+genomeFile="-genomeFile genomeFile.fa" gffFile="-gffFile AT_GFF3file.gff3" \
+    miRNAFile="-miRNAFile miRNAFile.fa" genomeFeature="-genomeFeature 0" \
+    tag2FASTA="--tag2FASTA" PARElibs="-libs LibA_PARE.txt" \
+    AGAVE_JOB_NAME="test-sparta" bash sparta.bashx
 
 exit 0

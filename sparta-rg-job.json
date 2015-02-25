@@ -26,7 +26,7 @@
     "repeats": false,
     "tarScore": "S",
     "noiseFilter": false,
-    "map2DD": true
+    "map2DD": false
   },
   "notifications": [
     {
