@@ -6,3 +6,8 @@ Source: http://mpss.udel.edu/tools/mirna_apps/download.php
 
 03.02.2015: Updated with working Agave apps. The .bashx scripts are Agave script templates. The *job.json scripts are sample jobs to exercise the applications. The other JSON files contain the application metadata.
 
+## Agave app list
+* mirferno-feature-file-1.07u2
+* sparta-reference-genome-1.07u1
+* mirferno-reference-genome-1.07u2
+* sparta-feature-file-1.07u2
