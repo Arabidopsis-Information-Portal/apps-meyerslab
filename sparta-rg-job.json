@@ -7,9 +7,9 @@
   "memoryPerNode": "2GB",
   "nodeCount": 1,
   "processorsPerNode": 1,
-  "archive": false,
+  "archive": true,
   "archiveSystem": "araport-storage-00",
-  "archivePath": "vaughn/archive/sparta",
+  "archivePath": "vaughn/archive/sparta-rg-01",
   "inputs": {
     "miRNAFile": "agave://araport-storage-00/public_files/mirna.fa",
     "PARElibs": [
