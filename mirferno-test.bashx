@@ -4,6 +4,6 @@ wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_miRfern
     rm sampleData_miRferno.tar.gz;
 
 # Fire off script template
-genomeFile="-genomeFile genomeFile.fa" gffFile="-gffFile AT_GFF3file.gff3" miRNAFile="-miRNAFile miRNAFile.fa" genomeFeature="-genomeFeature 0" AGAVE_JOB_NAME="test" bash mirferno.bashx
+genomeFile="-genomeFile genomeFile.fa" gffFile="-gffFile AT_GFF3file.gff3" miRNAFile="-miRNAFile miRNAFile.fa" genomeFeature="-genomeFeature 0" AGAVE_JOB_NAME=“mirferno-test" bash mirferno.bashx
 
 exit 0

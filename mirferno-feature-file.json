@@ -1,0 +1,192 @@
+{
+    "name": "mirferno-feature-file",
+    "parallelism": "SERIAL",
+    "version": "1.07",
+    "helpURI": "http://mpss.udel.edu/web/php/helpers/download-file.php?file=/var/www/html/tools/mirna_apps/mirferno/README.txt",
+    "label": "miRferno - Target prediction using feature file",
+    "shortDescription": "miRferno is the miRNA-target prediction module of small RNA-PARE Target Analyzer (sPARTA). This version predicts targets given a feature file genome in FASTA format.",
+    "longDescription": "",
+    "defaultMemory": "2G",
+    "defaultProcessors": 1,
+    "defaultQueue": "normal",
+    "deploymentPath": "vaughn/apps/docker-meyerslab",
+    "deploymentSystem": "araport-storage-00",
+    "executionSystem": "araport-compute-00",
+    "executionType": "CLI",
+    "templatePath": "mirferno.bashx",
+    "testPath": "mirferno-test-feature.bashx",
+    "checkpointable": false,
+    "modules": [],
+    "tags": [
+        "mirna",
+        "target prediction"
+    ],
+    "ontology": [
+        "http://sswapmeet.sswap.info/agave/apps/Application"
+    ],
+    "inputs": [
+        {
+            "id": "miRNAFile",
+            "value": {
+                "default": "",
+                "type": "string",
+                "validator": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "miRNA sequence file",
+                "description": "Contains one or more miRNA sequences in FASTA format",
+                "argument": "-miRNAFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-fasta"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        },
+        {
+            "id": "featureFile",
+            "value": {
+                "default": "agave://araport-storage-00/public_files/cds.fa",
+                "type": "string",
+                "validator": "",
+                "visible": false,
+                "required": true
+            },
+            "details": {
+                "label": "User feature file",
+                "description": "FASTA file containing sequences of interest (CDS, transcript, intergenic regions etc.)",
+                "argument": "-featureFile ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/application/X-fasta"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileTypes": [
+                    "fasta-0",
+                    "text-0",
+                    "raw-0"
+                ]
+            }
+        }
+    ],
+    "parameters": [
+        {
+            "id": "genomeFeature",
+            "value": {
+                "default": "0",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "0": "Prediction is to be done in genic region"
+                    },
+                    {
+                        "1": "Prediction is to be done in intergenic region"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Target prediction context",
+                "description": "",
+                "argument": "-genomeFeature ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "tarPred",
+            "value": {
+                "default": "H",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "H": "Heuristic"
+                    },
+                    {
+                        "E": "Exhaustive"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Mode of target prediction",
+                "description": "",
+                "argument": "-tarPred ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        },
+        {
+            "id": "tarScore",
+            "value": {
+                "default": "S",
+                "type": "enumeration",
+                "visible": true,
+                "required": true,
+                "enum_values": [
+                    {
+                        "S": "Seedless"
+                    },
+                    {
+                        "N": "Normal"
+                    }
+                ]
+            },
+            "details": {
+                "label": "Scoring mode for target prediction",
+                "description": "",
+                "argument": "-tarScore ",
+                "showArgument": true
+            },
+            "semantics": {
+                "ontology": [
+                    "xs:string"
+                ]
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "id": "Predictions",
+            "value": {
+                "default": "All.targs.parsed.csv",
+                "validator": ""
+            },
+            "details": {
+                "label": "Predictions in CSV format",
+                "description": ""
+            },
+            "semantics": {
+                "ontology": [
+                    "http://sswapmeet.sswap.info/mime/text/Csv"
+                ],
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "fileType": "Text-0"
+            }
+        }
+    ]
+}

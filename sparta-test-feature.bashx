@@ -3,10 +3,12 @@ wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_sPARTA.
     tar -zxvf sampleData_sPARTA.tar.gz; \
     rm sampleData_sPARTA.tar.gz
 
+wget -q "ftp://ftp.arabidopsis.org/home/tair/Genes/TAIR10_genome_release/TAIR10_blastsets/TAIR10_cds_20110103_representative_gene_model_updated" -O "cds.fa"
+
 # Fire off script template
-genomeFile="-genomeFile genomeFile.fa" gffFile="-gffFile AT_GFF3file.gff3" \
+featureFile="-featureFile cds.fa" \
     miRNAFile="-miRNAFile miRNAFile.fa" genomeFeature="-genomeFeature 0" \
     tag2FASTA="--tag2FASTA" PARElibs="-libs LibA_PARE.txt" \
-    AGAVE_JOB_NAME="sparta-test” bash sparta.bashx
+    AGAVE_JOB_NAME="sparta-test-feature“ bash sparta.bashx
 
 exit 0

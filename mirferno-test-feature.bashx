@@ -1,0 +1,11 @@
+# Grab some sample data
+wget -q "http://mpss.udel.edu/tools/mirna_apps/sparta/samples/sampleData_miRferno.tar.gz" -O sampleData_miRferno.tar.gz; \
+    tar -zxvf sampleData_miRferno.tar.gz; \
+    rm sampleData_miRferno.tar.gz;
+
+wget -q "ftp://ftp.arabidopsis.org/home/tair/Genes/TAIR10_genome_release/TAIR10_blastsets/TAIR10_cds_20110103_representative_gene_model_updated" -O "cds.fa"
+
+# Fire off script template
+featureFile="-featureFile cds.fa" miRNAFile="-miRNAFile miRNAFile.fa" genomeFeature="-genomeFeature 0" AGAVE_JOB_NAME="mirferno-test-feature” bash mirferno.bashx
+
+exit 0
