@@ -1,19 +1,18 @@
 {
-  "name":"mirferno-reference-genome",
-  "appId": "mirferno-reference-genome-1.07u2",
+  "name":"mirferno-feature-file",
+  "appId": "mirferno-feature-file-1.07u2",
   "batchQueue": "normal",
   "executionSystem": "araport-compute-00",
   "maxRunTime": "01:00:00",
   "memoryPerNode": "1GB",
   "nodeCount": 1,
   "processorsPerNode": 1,
-  "archive": false,
+  "archive": true,
   "archiveSystem": "araport-storage-00",
-  "archivePath": "vaughn/archive/mirferno",
+  "archivePath": "vaughn/archive/mirferno-ff-01",
   "inputs": {
     "miRNAFile" : "agave://araport-storage-00/public_files/mirna.fa",
-    "gffFile": "agave://araport-storage-00/public_files/genome.gff3",
-    "genomeFile": "agave://araport-storage-00/public_files/genome.fa"
+    "featureFile": "agave://araport-storage-00/public_files/cds.fa"
   },
   "parameters": {
     "genomeFeature": "0",
@@ -30,6 +29,10 @@
       "url":"vaughn@tacc.utexas.edu",
       "event":"FAILED",
       "persistent":false
+    }, {
+      "url":"http://requestbin.agaveapi.co/uirjguui?job_id=${JOB_ID}&status=${JOB_STATUS}",
+      "event":"*",
+      "persistent":true
     }
   ]
 }

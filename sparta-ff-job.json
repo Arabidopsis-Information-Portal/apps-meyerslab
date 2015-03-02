@@ -1,22 +1,21 @@
 {
-  "name":"sparta-reference-genome",
-  "appId": "sparta-reference-genome-1.07u1",
+  "name":"sparta-feature-file",
+  "appId": "sparta-feature-file-1.07u2",
   "batchQueue": "normal",
   "executionSystem": "araport-compute-00",
   "maxRunTime": "01:00:00",
   "memoryPerNode": "2GB",
   "nodeCount": 1,
   "processorsPerNode": 1,
-  "archive": false,
+  "archive": true,
   "archiveSystem": "araport-storage-00",
-  "archivePath": "vaughn/archive/sparta",
+  "archivePath": "vaughn/archive/sparta-ff-01",
   "inputs": {
     "miRNAFile": "agave://araport-storage-00/public_files/mirna.fa",
     "PARElibs": [
       "agave://araport-storage-00/public_files/pare.txt"
     ],
-    "gffFile": "agave://araport-storage-00/public_files/genome.gff3",
-    "genomeFile": "agave://araport-storage-00/public_files/genome.fa"
+    "featureFile": "agave://araport-storage-00/public_files/cds.fa"
   },
   "parameters": {
     "genomeFeature": "0",

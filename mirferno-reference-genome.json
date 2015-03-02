@@ -59,7 +59,7 @@
                 "default": "agave://araport-storage-00/public_files/genome.fa",
                 "type": "string",
                 "validator": "",
-                "visible": false,
+                "visible": true,
                 "required": true
             },
             "details": {
